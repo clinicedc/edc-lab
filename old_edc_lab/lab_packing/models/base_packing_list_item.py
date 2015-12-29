@@ -1,11 +1,12 @@
 from django.db import models
 
-from edc_registration.models import RegisteredSubject
+from edc.device.sync.models import BaseSyncUuidModel
+from edc.subject.registration.models import RegisteredSubject
 
 from .base_packing_list import BasePackingList
 
 
-class BasePackingListItem(models.Model):
+class BasePackingListItem(BaseSyncUuidModel):
 
     requisition = models.CharField(
         max_length=36,
@@ -13,22 +14,22 @@ class BasePackingListItem(models.Model):
         blank=False,
         editable=False,
         help_text="pk of requisition instance",
-        )
+    )
 
     item_reference = models.CharField(
         max_length=25,
-        )
+    )
 
     item_datetime = models.DateTimeField(
         null=True,
         blank=True,
-        )
+    )
 
     item_description = models.TextField(
         max_length=100,
         null=True,
         blank=True,
-        )
+    )
 
     item_priority = models.CharField(
         max_length=35,
@@ -36,7 +37,7 @@ class BasePackingListItem(models.Model):
         null=True,
         blank=False,
         help_text="",
-        )
+    )
 
     old_panel_id = models.CharField(max_length=50, null=True)
 
@@ -112,7 +113,7 @@ class BasePackingListItem(models.Model):
                 timestamp=packing_list_model.objects.get(
                     pk=getattr(self, packing_list_field_attname)).timestamp,
                 pk=getattr(self, packing_list_field_attname),
-                )
+            )
         else:
             return 'packing list'
     view_packing_list.allow_tags = True
@@ -137,9 +138,6 @@ class BasePackingListItem(models.Model):
     def description(self):
         return self.item_description.replace(' ', '<BR>')
     description.allow_tags = True
-
-    def get_subject_identifier(self):
-        return ''
 
     class Meta:
         abstract = True
