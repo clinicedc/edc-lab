@@ -1,0 +1,2 @@
+recursive-include edc_lab/lab_clinic_api/templates *
+recursive-include edc_lab/lab_requisition/templates *
