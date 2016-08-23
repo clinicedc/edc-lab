@@ -4,6 +4,9 @@ __pycache__/
 .pydevproject
 .project
 .settings
+*.ini
+db.sqlite3
+test-*
 */*/migrations/
 # C extensions
 *.so
