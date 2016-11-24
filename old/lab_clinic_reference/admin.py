@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from edc_base.modeladmin.mixins import (
+from edc_base.modeladmin_mixins import (
     ModelAdminRedirectMixin, ModelAdminFormInstructionsMixin, ModelAdminFormAutoNumberMixin,
     ModelAdminAuditFieldsMixin)
 
@@ -15,6 +15,7 @@ class BaseModelAdmin(ModelAdminRedirectMixin, ModelAdminFormInstructionsMixin, M
     list_per_page = 10
     date_hierarchy = 'modified'
     empty_value_display = '-'
+
 
 class GradingListAdmin(BaseModelAdmin):
     pass
