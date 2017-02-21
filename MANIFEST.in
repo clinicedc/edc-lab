@@ -1,5 +1,4 @@
 include AUTHORS CHANGES README.md LICENCE
 recursive-include edc_lab/templates *
-recursive-include docs *
-recursive-exclude edc_example/*
+recursive-include edc_lab/static *
 recursive-exclude etc/*
