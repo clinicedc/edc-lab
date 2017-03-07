@@ -1,2 +1,4 @@
-recursive-include edc_lab/lab_clinic_api/templates *
-recursive-include edc_lab/lab_requisition/templates *
+include AUTHORS CHANGES README.md LICENCE
+recursive-include edc_lab/templates *
+recursive-include edc_lab/static *
+recursive-exclude etc/*

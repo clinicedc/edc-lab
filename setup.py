@@ -11,7 +11,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='edc-lab',
-    version='0.1.dev0',
+    version='0.2.0',
     author=u'Erik van Widenfelt',
     author_email='ew2789@gmail.com',
     packages=find_packages(),
@@ -22,6 +22,8 @@ setup(
     long_description=README,
     zip_safe=False,
     keywords='Edc old lab classes',
+    install_requires=[
+        'reportlab'],
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
@@ -29,9 +31,7 @@ setup(
         'License :: OSI Approved :: GNU General Public License (GPL)',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        # 'Programming Language :: Python :: 3',
-        # 'Programming Language :: Python :: 3.2',
-        # 'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Internet :: WWW/HTTP',
     ],
 )

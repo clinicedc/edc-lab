@@ -1,9 +1,13 @@
+edc_lab/migrations/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 .pydevproject
 .project
 .settings
+*.ini
+db.sqlite3
+test-*
 */*/migrations/
 # C extensions
 *.so
