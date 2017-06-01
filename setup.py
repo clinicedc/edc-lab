@@ -22,8 +22,7 @@ setup(
     long_description=README,
     zip_safe=False,
     keywords='Edc old lab classes',
-    install_requires=[
-        'reportlab'],
+    install_requires=['reportlab'],
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
