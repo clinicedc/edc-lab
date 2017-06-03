@@ -27,15 +27,15 @@ Create aliquots and their relationship:
     
 Set up processes:
 
-    process_bc = Process(aliquot_type=bc, aliquot_count=4)
-    process_pl = Process(aliquot_type=pl, aliquot_count=2)
     processing_profile = ProcessingProfile(
         name='viral_load', aliquot_type=wb)
+    process_bc = Process(aliquot_type=bc, aliquot_count=4)
+    process_pl = Process(aliquot_type=pl, aliquot_count=2)
     processing_profile.add_processes(process_bc, process_pl)
     
 Create a panel(s):
 
-    self.panel = RequisitionPanel(
+    panel = RequisitionPanel(
         name='panel',
         model=SubjectRequisition,
         aliquot_type=a,
@@ -43,12 +43,11 @@ Create a panel(s):
     
 Create a lab profile:
 
-    self.lab_profile = LabProfile(
+    lab_profile = LabProfile(
         name='lab_profile',
         requisition_model=SubjectRequisition)
-    self.lab_profile.add_panel(self.panel)
+    lab_profile.add_panel(panel)
     
 Register the `lab_profile` with site:
 
-    site_labs.register(self.lab_profile)
-add_process
+    site_labs.register(lab_profile)
