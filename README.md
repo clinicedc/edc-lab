@@ -17,39 +17,38 @@ Add to settings:
         ...
     ]
 
+### Usage
+Create aliquots and their relationship:
     
-### Overview
-
-At the facility (e.g. clinic, household + clinic)
-specimen collection, label and requisition -> process and label -> pack -> ship
-
-####Step 1: specimen collection, labelling and requisition
-
-`RequisitionModelMixin` and `edc_label`
-* Collect the specimen as per protocol (physical)
-* The Requisition Crf is completed at the time of specimen collection (data). The Requisition Crf serves to capture if the specimen was (or was not) collected and if so all the details such as volume, condition, date and time;
-* Label specimen (physical and data)
-
-The Requisition Crf links the specimen to a processing profile
-
-####Step 2:
- 
-requisition: filled in with other Crfs, may be more than one requisition model (e.g. maternal, infant)
-print labels: print labels for 
-
-
-###Requisitions
-
-Declare a model or models to store requisition instances. For example:
-
-    class SubjectRequisition(CrfModelMixin, RequisitionModelMixin, RequiresConsentMixin,
-                             UpdatesRequisitionMetadataModelMixin, BaseUuidModel):
+    wb = AliquotType(name='whole_blood', alpha_code='WB', numeric_code='02')
+    bc = AliquotType(name='buffy_coat', alpha_code='BC', numeric_code='16')
+    pl = AliquotType(name='plasmae', alpha_code='PL', numeric_code='32')
+    a.add_derivatives(pl, bc)
     
-        subject_visit = models.ForeignKey(SubjectVisit)
+Set up processes:
+
+    process_bc = Process(aliquot_type=bc, aliquot_count=4)
+    process_pl = Process(aliquot_type=pl, aliquot_count=2)
+    processing_profile = ProcessingProfile(
+        name='viral_load', aliquot_type=wb)
+    processing_profile.add_processes(process_bc, process_pl)
     
-        class Meta:
-            app_label = 'edc_example'
-            consent_model = 'edc_example.subjectconsent'
+Create a panel(s):
 
-The requisition model has a key to the `visit` model so is considered a `Crf` model. But unlike a `crf` model, where each model has one instance per visit, all requisition instances for a subject's visit are instances of the same model with unique `panel names`.
+    self.panel = RequisitionPanel(
+        name='panel',
+        model=SubjectRequisition,
+        aliquot_type=a,
+        processing_profile=processing_profile)
+    
+Create a lab profile:
 
+    self.lab_profile = LabProfile(
+        name='lab_profile',
+        requisition_model=SubjectRequisition)
+    self.lab_profile.add_panel(self.panel)
+    
+Register the `lab_profile` with site:
+
+    site_labs.register(self.lab_profile)
+add_process
