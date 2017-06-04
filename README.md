@@ -64,8 +64,7 @@ Create a requisition model instance:
 
 Pass the requisition to `Specimen`
 
-    specimen = Specimen(
-        requisition=requisition)
+    specimen = Specimen(requisition=requisition)
 
 Process:
     
