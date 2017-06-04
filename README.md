@@ -66,3 +66,25 @@ Pass the requisition to `Specimen`
 
     specimen = Specimen(
         requisition=requisition)
+
+Process:
+    
+    specimen.process()
+    
+Aliquots have been created according to the configured processing profile:
+
+    >>> specimen.primary_aliquot.identifier
+    99900GV63F00000201
+ 
+    >>> for aliquot in specimen.aliquots.order_by('count'):
+           print(aliquot.aliquot_identifier)
+    99900GV63F00000201
+    99900GV63F02013202
+    99900GV63F02013203
+    99900GV63F02011604
+    99900GV63F02011605
+    99900GV63F02011606
+    99900GV63F02011607
+ 
+    
+    
