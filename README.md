@@ -17,15 +17,16 @@ Add to settings:
         ...
     ]
 
-### Usage
-Create aliquots and their relationship:
+### Configuration
+
+Create aliquots configurations and their relationship:
     
     wb = AliquotType(name='whole_blood', alpha_code='WB', numeric_code='02')
     bc = AliquotType(name='buffy_coat', alpha_code='BC', numeric_code='16')
     pl = AliquotType(name='plasma', alpha_code='PL', numeric_code='32')
     a.add_derivatives(pl, bc)
     
-Set up processes:
+Set up one or more processing profiles:
 
     processing_profile = ProcessingProfile(
         name='viral_load', aliquot_type=wb)
@@ -33,7 +34,7 @@ Set up processes:
     process_pl = Process(aliquot_type=pl, aliquot_count=2)
     processing_profile.add_processes(process_bc, process_pl)
     
-Create a panel(s):
+Create one or more panels:
 
     panel = RequisitionPanel(
         name='panel',
@@ -51,3 +52,17 @@ Create a lab profile:
 Register the `lab_profile` with site:
 
     site_labs.register(lab_profile)
+
+### Usage
+
+Create a requisition model instance:
+
+    requisition = SubjectRequisition.objects.create(
+        subject_visit=self.subject_visit,
+        panel_name=self.panel.name,
+        is_drawn=YES)
+
+Pass the requisition to `Specimen`
+
+    specimen = Specimen(
+        requisition=requisition)
