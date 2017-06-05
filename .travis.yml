@@ -2,7 +2,7 @@ language: python
 python:
   - "3.6"
 env:
-  - DJANGO_VERSION=1.12
+  - DJANGO_VERSION=1.11.2
 
 # addons:
 #  apt_packages:
