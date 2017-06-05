@@ -1,5 +1,5 @@
 # edc-lab
-[![Build Status](https://travis-ci.org/botswana-harvard/edc-lab.svg?branch=develop)](https://travis-ci.org/botswana-harvard/edc-lab)
+[![Build Status](https://travis-ci.org/botswana-harvard/edc-lab.svg?branch=develop)](https://travis-ci.org/botswana-harvard/edc-lab) [![Coverage Status](https://coveralls.io/repos/github/botswana-harvard/edc-lab/badge.svg?branch=develop)](https://coveralls.io/github/botswana-harvard/edc-lab?branch=develop)
 
 Lab classes
 
