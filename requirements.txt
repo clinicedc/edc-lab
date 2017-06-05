@@ -1,3 +1,4 @@
+reportlab
 git+https://github.com/botswana-harvard/edc-base@develop#egg=edc-base
 git+https://github.com/erikvw/django-revision@develop#egg=django-revision
 git+https://github.com/erikvw/django-crypto-fields@develop#egg=django-crypto-fields
