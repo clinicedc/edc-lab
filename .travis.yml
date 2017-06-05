@@ -4,10 +4,10 @@ python:
 env:
   - DJANGO_VERSION=1.11.2
 
-# addons:
-#  apt_packages:
+addons:
+  apt_packages:
 #     - libssl-dev
-#     - libcups2-dev
+     - libcups2-dev
 
 services:
   - mysql
@@ -17,7 +17,7 @@ install:
   - pip3 install -q Django==$DJANGO_VERSION
   - pip3 install flake8
   - pip3 install coveralls
-#  - pip install pycups
+  - pip install pycups
   - pip3 install mysqlclient
   - pip3 install -q -r requirements.txt
 
