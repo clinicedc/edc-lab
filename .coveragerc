@@ -1,5 +1,6 @@
 [run]
 omit =
+    */sync_models.py
     */tests/*
     */migrations/*
     */wsgi.py
