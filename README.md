@@ -26,7 +26,8 @@ Create aliquots configurations and their relationship:
     wb = AliquotType(name='whole_blood', alpha_code='WB', numeric_code='02')
     bc = AliquotType(name='buffy_coat', alpha_code='BC', numeric_code='16')
     pl = AliquotType(name='plasma', alpha_code='PL', numeric_code='32')
-    a.add_derivatives(pl, bc)
+    
+    wb.add_derivatives(pl, bc)
     
 Set up one or more processing profiles:
 
