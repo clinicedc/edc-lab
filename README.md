@@ -51,7 +51,7 @@ Create a lab profile:
     
 Register the `lab_profile` with site:
 
-    site_labs.register(lab_profile, requisition_model=SubjectRequisition)
+    site_labs.register(lab_profile, requisition_model='edc_lab.subjectrequisition')
 
 ### Usage
 
