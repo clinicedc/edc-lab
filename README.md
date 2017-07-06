@@ -41,20 +41,17 @@ Create one or more panels:
 
     panel = RequisitionPanel(
         name='panel',
-        model=SubjectRequisition,
         aliquot_type=a,
         processing_profile=processing_profile)
     
 Create a lab profile:
 
-    lab_profile = LabProfile(
-        name='lab_profile',
-        requisition_model=SubjectRequisition)
+    lab_profile = LabProfile(name='lab_profile')
     lab_profile.add_panel(panel)
     
 Register the `lab_profile` with site:
 
-    site_labs.register(lab_profile)
+    site_labs.register(lab_profile, requisition_model=SubjectRequisition)
 
 ### Usage
 
