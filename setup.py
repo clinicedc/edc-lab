@@ -11,7 +11,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='edc-lab',
-    version='0.2.8',
+    version='0.2.9',
     author=u'Erik van Widenfelt',
     author_email='ew2789@gmail.com',
     packages=find_packages(),
@@ -22,8 +22,7 @@ setup(
     long_description=README,
     zip_safe=False,
     keywords='Edc old lab classes',
-    install_requires=[
-        'reportlab'],
+    install_requires=['reportlab'],
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',

@@ -1,8 +1,10 @@
 # edc-lab
+[![Build Status](https://travis-ci.org/botswana-harvard/edc-lab.svg?branch=develop)](https://travis-ci.org/botswana-harvard/edc-lab) [![Coverage Status](https://coveralls.io/repos/github/botswana-harvard/edc-lab/badge.svg?branch=develop)](https://coveralls.io/github/botswana-harvard/edc-lab?branch=develop)
+
 Lab classes
 
 
-###Installation
+### Installation
 
 
 Get the latest version:
@@ -17,39 +19,71 @@ Add to settings:
         ...
     ]
 
+### Configuration
+
+Create aliquots configurations and their relationship:
     
-### Overview
+    wb = AliquotType(name='whole_blood', alpha_code='WB', numeric_code='02')
+    bc = AliquotType(name='buffy_coat', alpha_code='BC', numeric_code='16')
+    pl = AliquotType(name='plasma', alpha_code='PL', numeric_code='32')
+    
+    wb.add_derivatives(pl, bc)
+    
+Set up one or more processing profiles:
 
-At the facility (e.g. clinic, household + clinic)
-specimen collection, label and requisition -> process and label -> pack -> ship
+    processing_profile = ProcessingProfile(
+        name='viral_load', aliquot_type=wb)
+    process_bc = Process(aliquot_type=bc, aliquot_count=4)
+    process_pl = Process(aliquot_type=pl, aliquot_count=2)
+    processing_profile.add_processes(process_bc, process_pl)
+    
+Create one or more panels:
 
-####Step 1: specimen collection, labelling and requisition
+    panel = RequisitionPanel(
+        name='panel',
+        aliquot_type=a,
+        processing_profile=processing_profile)
+    
+Create a lab profile:
 
-`RequisitionModelMixin` and `edc_label`
-* Collect the specimen as per protocol (physical)
-* The Requisition Crf is completed at the time of specimen collection (data). The Requisition Crf serves to capture if the specimen was (or was not) collected and if so all the details such as volume, condition, date and time;
-* Label specimen (physical and data)
+    lab_profile = LabProfile(name='lab_profile')
+    lab_profile.add_panel(panel)
+    
+Register the `lab_profile` with site:
 
-The Requisition Crf links the specimen to a processing profile
+    site_labs.register(lab_profile, requisition_model='edc_lab.subjectrequisition')
 
-####Step 2:
+### Usage
+
+Create a requisition model instance:
+
+    requisition = SubjectRequisition.objects.create(
+        subject_visit=self.subject_visit,
+        panel_name=self.panel.name,
+        is_drawn=YES)
+
+Pass the requisition to `Specimen`
+
+    specimen = Specimen(requisition=requisition)
+
+Process:
+    
+    specimen.process()
+    
+Aliquots have been created according to the configured processing profile:
+
+    >>> specimen.primary_aliquot.identifier
+    99900GV63F00000201
  
-requisition: filled in with other Crfs, may be more than one requisition model (e.g. maternal, infant)
-print labels: print labels for 
-
-
-###Requisitions
-
-Declare a model or models to store requisition instances. For example:
-
-    class SubjectRequisition(CrfModelMixin, RequisitionModelMixin, RequiresConsentMixin,
-                             UpdatesRequisitionMetadataModelMixin, BaseUuidModel):
+    >>> for aliquot in specimen.aliquots.order_by('count'):
+           print(aliquot.aliquot_identifier)
+    99900GV63F00000201
+    99900GV63F02013202
+    99900GV63F02013203
+    99900GV63F02011604
+    99900GV63F02011605
+    99900GV63F02011606
+    99900GV63F02011607
+ 
     
-        subject_visit = models.ForeignKey(SubjectVisit)
     
-        class Meta:
-            app_label = 'edc_example'
-            consent_model = 'edc_example.subjectconsent'
-
-The requisition model has a key to the `visit` model so is considered a `Crf` model. But unlike a `crf` model, where each model has one instance per visit, all requisition instances for a subject's visit are instances of the same model with unique `panel names`.
-

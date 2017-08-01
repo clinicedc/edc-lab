@@ -1,0 +1,9 @@
+[run]
+omit =
+    */sync_models.py
+    */tests/*
+    */migrations/*
+    */wsgi.py
+    */settings.py
+    */urls.py
+    setup.py
