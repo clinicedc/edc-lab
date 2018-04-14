@@ -9,3 +9,6 @@ git+https://github.com/clinicedc/edc-label@develop#egg=edc-label
 git+https://github.com/clinicedc/edc-protocol@develop#egg=edc-protocol
 git+https://github.com/clinicedc/edc-registration@develop#egg=edc-registration
 git+https://github.com/clinicedc/edc-reports@develop#egg=edc-reports
+git+https://github.com/clinicedc/edc-model-admin@develop#egg=edc-model-admin
+git+https://github.com/clinicedc/edc-fieldsets@develop#egg=edc-fieldsets
+git+https://github.com/clinicedc/edc-form-validators@develop#egg=edc-form-validators
