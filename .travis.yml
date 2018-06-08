@@ -27,3 +27,6 @@ script:
 
 after_success:
   - coveralls
+  
+notifications:
+    slack: clinicedc:NiE0zL7B8VtlCF53CEfvGbiV
