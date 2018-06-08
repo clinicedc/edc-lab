@@ -45,7 +45,6 @@ Create a "panel" that uses the processing profile:
 
     panel = RequisitionPanel(
         name='Viral Load',
-        aliquot_type=wb,
         processing_profile=viral_load)
     
 Add the panel (and others) to a lab profile:
