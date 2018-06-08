@@ -9,7 +9,7 @@ Lab classes
 
 Get the latest version:
 
-    pip install git+https://github.com/botswana-harvard/edc-lab@develop#egg=edc-lab
+    pip install git+https://github.com/clinicedc/edc-lab@develop#egg=edc-lab
 
 Add to settings:
 
@@ -21,37 +21,43 @@ Add to settings:
 
 ### Configuration
 
-Create aliquots configurations and their relationship:
+Create aliquot types:
     
+    # aliquot types
     wb = AliquotType(name='whole_blood', alpha_code='WB', numeric_code='02')
     bc = AliquotType(name='buffy_coat', alpha_code='BC', numeric_code='16')
     pl = AliquotType(name='plasma', alpha_code='PL', numeric_code='32')
     
+Add possible derivatives to an aliquot type:
+
+    # in this case, plasma and buffy coat are possible derivatives
     wb.add_derivatives(pl, bc)
     
-Set up one or more processing profiles:
+Set up a processing profile:
 
-    processing_profile = ProcessingProfile(
+    viral_load = ProcessingProfile(
         name='viral_load', aliquot_type=wb)
     process_bc = Process(aliquot_type=bc, aliquot_count=4)
     process_pl = Process(aliquot_type=pl, aliquot_count=2)
-    processing_profile.add_processes(process_bc, process_pl)
+    viral_load.add_processes(process_bc, process_pl)
     
-Create one or more panels:
+Create a "panel" that uses the processing profile:
 
     panel = RequisitionPanel(
-        name='panel',
-        aliquot_type=a,
-        processing_profile=processing_profile)
+        name='Viral Load',
+        aliquot_type=wb,
+        processing_profile=viral_load)
     
-Create a lab profile:
+Add the panel (and others) to a lab profile:
 
-    lab_profile = LabProfile(name='lab_profile')
+    lab_profile = LabProfile(
+        name='lab_profile',
+        requisition_model='edc_lab.subjectrequisition')
     lab_profile.add_panel(panel)
     
-Register the `lab_profile` with site:
+Register the `lab_profile` with the site global:
 
-    site_labs.register(lab_profile, requisition_model='edc_lab.subjectrequisition')
+    site_labs.register(lab_profile)
 
 ### Usage
 
