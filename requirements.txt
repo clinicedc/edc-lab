@@ -12,3 +12,4 @@ git+https://github.com/clinicedc/edc-reports@develop#egg=edc-reports
 git+https://github.com/clinicedc/edc-model-admin@develop#egg=edc-model-admin
 git+https://github.com/clinicedc/edc-fieldsets@develop#egg=edc-fieldsets
 git+https://github.com/clinicedc/edc-form-validators@develop#egg=edc-form-validators
+git+https://github.com/clinicedc/edc-model-fields@develop#egg=edc-model-fields
