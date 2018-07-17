@@ -1,4 +1,3 @@
-.
 git+https://github.com/erikvw/django-revision@develop#egg=django-revision
 git+https://github.com/erikvw/django-crypto-fields@develop#egg=django-crypto-fields
 git+https://github.com/clinicedc/edc-appointment@develop#egg=edc-appointment
@@ -32,3 +31,5 @@ git+https://github.com/clinicedc/edc-subject-dashboard@develop#egg=edc-subject-d
 git+https://github.com/clinicedc/edc-search@develop#egg=edc-search
 git+https://github.com/clinicedc/edc-fieldsets@develop#egg=edc-fieldsets
 git+https://github.com/clinicedc/edc-reports@develop#egg=edc-reports
+git+https://github.com/erikvw/django-offline-files@develop#egg=django-offline-files
+git+https://github.com/erikvw/django-offline@develop#egg=django-offline
