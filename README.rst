@@ -1,17 +1,11 @@
-# edc-lab
-[![Build Status](https://travis-ci.org/clinicedc/edc-lab.svg?branch=develop)](https://travis-ci.org/clinicedc/edc-lab) [![Coverage Status](https://coveralls.io/repos/github/clinicedc/edc-lab/badge.svg?branch=develop)](https://coveralls.io/github/clinicedc/edc-lab?branch=develop)
+|pypi| |travis| |coverage|
 
-Lab classes
-
-
-### Installation
-
-
-Get the latest version:
-
-    pip install git+https://github.com/clinicedc/edc-lab@develop#egg=edc-lab
+edc-lab
+-------
 
 Add to settings:
+
+.. code-block:: python
 
     INSTALLED_APPS = [
         ...
@@ -19,10 +13,13 @@ Add to settings:
         ...
     ]
 
-### Configuration
+Configuration
+-------------
 
 Create aliquot types:
     
+.. code-block:: python
+
     # aliquot types
     wb = AliquotType(name='whole_blood', alpha_code='WB', numeric_code='02')
     bc = AliquotType(name='buffy_coat', alpha_code='BC', numeric_code='16')
@@ -30,10 +27,14 @@ Create aliquot types:
     
 Add possible derivatives to an aliquot type:
 
+.. code-block:: python
+
     # in this case, plasma and buffy coat are possible derivatives
     wb.add_derivatives(pl, bc)
     
 Set up a processing profile:
+
+.. code-block:: python
 
     viral_load = ProcessingProfile(
         name='viral_load', aliquot_type=wb)
@@ -41,7 +42,9 @@ Set up a processing profile:
     process_pl = Process(aliquot_type=pl, aliquot_count=2)
     viral_load.add_processes(process_bc, process_pl)
     
-Create a "panel" that uses the processing profile:
+Create a``panel`` that uses the processing profile:
+
+.. code-block:: python
 
     panel = RequisitionPanel(
         name='Viral Load',
@@ -49,46 +52,66 @@ Create a "panel" that uses the processing profile:
     
 Add the panel (and others) to a lab profile:
 
+.. code-block:: python
+
     lab_profile = LabProfile(
         name='lab_profile',
         requisition_model='edc_lab.subjectrequisition')
     lab_profile.add_panel(panel)
     
-Register the `lab_profile` with the site global:
+Register the ``lab_profile`` with the site global:
+
+.. code-block:: python
 
     site_labs.register(lab_profile)
 
-### Usage
+Usage
+-----
 
 Create a requisition model instance:
+
+.. code-block:: python
 
     requisition = SubjectRequisition.objects.create(
         subject_visit=self.subject_visit,
         panel_name=self.panel.name,
         is_drawn=YES)
 
-Pass the requisition to `Specimen`
+Pass the requisition to ``Specimen``
+
+.. code-block:: python
 
     specimen = Specimen(requisition=requisition)
 
 Process:
     
+.. code-block:: python
+
     specimen.process()
     
 Aliquots have been created according to the configured processing profile:
 
+.. code-block:: python
+
     >>> specimen.primary_aliquot.identifier
-    99900GV63F00000201
+    '99900GV63F00000201'
  
     >>> for aliquot in specimen.aliquots.order_by('count'):
            print(aliquot.aliquot_identifier)
-    99900GV63F00000201
-    99900GV63F02013202
-    99900GV63F02013203
-    99900GV63F02011604
-    99900GV63F02011605
-    99900GV63F02011606
-    99900GV63F02011607
+    '99900GV63F00000201'
+    '99900GV63F02013202'
+    '99900GV63F02013203'
+    '99900GV63F02011604'
+    '99900GV63F02011605'
+    '99900GV63F02011606'
+    '99900GV63F02011607'
  
+
+.. |pypi| image:: https://img.shields.io/pypi/v/edc-lab.svg
+    :target: https://pypi.python.org/pypi/edc-lab
     
+.. |travis| image:: https://travis-ci.org/clinicedc/edc-lab.svg?branch=develop
+    :target: https://travis-ci.org/clinicedc/edc-lab
     
+.. |coverage| image:: https://coveralls.io/repos/github/clinicedc/edc-identifier/badge.svg?branch=develop
+    :target: https://coveralls.io/github/clinicedc/edc-lab?branch=develop
