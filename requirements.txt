@@ -31,5 +31,5 @@ git+https://github.com/clinicedc/edc-subject-dashboard@develop#egg=edc-subject-d
 git+https://github.com/clinicedc/edc-search@develop#egg=edc-search
 git+https://github.com/clinicedc/edc-fieldsets@develop#egg=edc-fieldsets
 git+https://github.com/clinicedc/edc-reports@develop#egg=edc-reports
-git+https://github.com/erikvw/django-offline-files@develop#egg=django-offline-files
-git+https://github.com/erikvw/django-offline@develop#egg=django-offline
+git+https://github.com/erikvw/django-collect-offline-files@develop#egg=django-collect-offline-files
+git+https://github.com/erikvw/django-collect-offline@develop#egg=django-collect-offline
