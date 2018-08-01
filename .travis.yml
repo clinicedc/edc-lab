@@ -1,22 +1,30 @@
 language: python
 
 python:
-  - "3.6"
+- 3.6
+- 3.7
+
+dist: xenial
+
+sudo: true
+
+services:
+- mysql
 
 addons:
   apt_packages:
      - libcups2-dev
 
-services:
-  - mysql
+branches:
+  only:
+  - develop
 
 install:
-  - pip3 install --upgrade pip setuptools
-  - pip3 install flake8
-  - pip3 install coveralls
-  - pip3 install mysqlclient
-  - pip3 install -e .
-  - pip3 install -q -r requirements.txt
+- pip install --upgrade pip
+- pip install -r requirements.txt
+- pip install -e .
+- pip install flake8
+- pip install coveralls
 
 before_script:
   - flake8 edc_lab
@@ -27,6 +35,3 @@ script:
 
 after_success:
   - coveralls
-  
-notifications:
-    slack: clinicedc:NiE0zL7B8VtlCF53CEfvGbiV

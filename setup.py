@@ -21,7 +21,7 @@ setup(
     include_package_data=True,
     url='https://github.com/clinicedc/edc-lab',
     license='GPL license, see LICENSE',
-    description='Edc old lab classes',
+    description='LIMS/lab classes for clinicedc/edc projects',
     long_description=README,
     zip_safe=False,
     keywords='Edc old lab classes',
