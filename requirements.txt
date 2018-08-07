@@ -1,1 +1,3 @@
 model-mommy
+django-collect-offline
+django-collect-offline-files
