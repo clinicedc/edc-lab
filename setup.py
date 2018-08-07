@@ -25,6 +25,18 @@ setup(
     long_description=README,
     zip_safe=False,
     keywords='Edc old lab classes',
+    install_requires=[
+        'arrow',
+        'edc_base',
+        'edc-fieldsets',
+        'edc_form_validators',
+        'edc_identifier',
+        'edc-label',
+        'edc_list_data',
+        'edc_model_admin',
+        'edc_reports',
+        'edc_search',
+    ],
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
