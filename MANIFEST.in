@@ -1,4 +1,7 @@
-include AUTHORS CHANGES README.rst LICENSE VERSION
+include AUTHORS CHANGES LICENSE VERSION
+include MANIFEST.in
+include *.rst
+include *.txt
 recursive-include edc_lab/templates *
 recursive-include edc_lab/static *
-recursive-exclude label_templates/*
+recursive-include label_templates *
