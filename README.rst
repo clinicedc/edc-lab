@@ -1,4 +1,4 @@
-|pypi| |travis| |coverage|
+|pypi| |travis| |codecov| |downloads|
 
 edc-lab
 -------
@@ -110,8 +110,11 @@ Aliquots have been created according to the configured processing profile:
 .. |pypi| image:: https://img.shields.io/pypi/v/edc-lab.svg
     :target: https://pypi.python.org/pypi/edc-lab
     
-.. |travis| image:: https://travis-ci.org/clinicedc/edc-lab.svg?branch=develop
-    :target: https://travis-ci.org/clinicedc/edc-lab
+.. |travis| image:: https://travis-ci.com/clinicedc/edc-lab.svg?branch=develop
+    :target: https://travis-ci.com/clinicedc/edc-lab
     
-.. |coverage| image:: https://coveralls.io/repos/github/clinicedc/edc-identifier/badge.svg?branch=develop
-    :target: https://coveralls.io/github/clinicedc/edc-lab?branch=develop
+.. |codecov| image:: https://codecov.io/gh/clinicedc/edc-lab/branch/develop/graph/badge.svg
+  :target: https://codecov.io/gh/clinicedc/edc-lab
+
+.. |downloads| image:: https://pepy.tech/badge/edc-lab
+   :target: https://pepy.tech/project/edc-lab
