@@ -53,6 +53,8 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         'edc_lab.apps.AppConfig',
     ],
     add_dashboard_middleware=True,
+    # add_lab_dashboard_middleware=True,
+    use_test_urls=True,
 ).settings
 
 
