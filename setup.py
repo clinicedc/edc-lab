@@ -35,7 +35,6 @@ setup(
         'arrow',
         'edc-fieldsets',
         'edc-label',
-        'edc_base',
         'edc_form_validators',
         'edc_identifier',
         'edc_list_data',
