@@ -9,7 +9,6 @@ from django.test.runner import DiscoverRunner
 from edc_test_utils import DefaultTestSettings
 from os.path import abspath, dirname
 
-
 app_name = 'edc_lab'
 base_dir = dirname(abspath(__file__))
 
@@ -41,9 +40,11 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         'edc_identifier.apps.AppConfig',
         'edc_facility.apps.AppConfig',
         'edc_label.apps.AppConfig',
+        'edc_model.apps.AppConfig',
         'edc_reference.apps.AppConfig',
         'edc_registration.apps.AppConfig',
         'edc_search.apps.AppConfig',
+        'edc_sites.apps.AppConfig',
         'edc_timepoint.apps.AppConfig',
         'edc_metadata_rules.apps.AppConfig',
         'edc_visit_schedule.apps.AppConfig',
@@ -61,7 +62,8 @@ def main():
     if not settings.configured:
         settings.configure(**DEFAULT_SETTINGS)
     django.setup()
-    failures = DiscoverRunner(failfast=True).run_tests(
+    tags = [t.split('=')[1] for t in sys.argv if t.startswith('--tag')]
+    failures = DiscoverRunner(failfast=False, tags=tags).run_tests(
         [f'{app_name}.tests'])
     sys.exit(failures)
 
