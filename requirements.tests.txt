@@ -10,9 +10,11 @@ edc-data-manager
 edc-device
 edc-export
 edc-facility
+edc-fieldsets
 edc-identifier
 edc-lab
 edc-lab-dashboard
+edc-list-data
 edc-locator
 edc-metadata-rules
 edc-model-admin
@@ -23,8 +25,10 @@ edc-prn
 edc-protocol
 edc-randomization
 edc-reportable
+edc-reports
 edc-reference
 edc-registration
+edc-search
 edc-sites
 edc-subject-dashboard
 edc-subject-model-wrappers
