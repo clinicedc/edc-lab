@@ -47,7 +47,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_search.apps.AppConfig",
         "edc_sites.apps.AppConfig",
         "edc_timepoint.apps.AppConfig",
-        "edc_metadata_rules.apps.AppConfig",
         "edc_visit_schedule.apps.AppConfig",
         "edc_visit_tracking.apps.AppConfig",
         "edc_offstudy.apps.AppConfig",
