@@ -1,5 +1,6 @@
 from dateutil.relativedelta import relativedelta
 from edc_visit_schedule.schedule import Schedule
+from edc_visit_schedule.site_visit_schedules import site_visit_schedules
 from edc_visit_schedule.tests.dummy_panel import DummyPanel
 from edc_visit_schedule.visit import Crf, FormsCollection, Visit
 from edc_visit_schedule.visit.requisition import Requisition
@@ -55,3 +56,4 @@ visit_schedule = VisitSchedule(
 schedule.add_visit(visit)
 
 visit_schedule.add_schedule(schedule)
+site_visit_schedules.register(visit_schedule)
