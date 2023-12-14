@@ -110,8 +110,8 @@ Aliquots have been created according to the configured processing profile:
 .. |pypi| image:: https://img.shields.io/pypi/v/edc-lab.svg
     :target: https://pypi.python.org/pypi/edc-lab
 
-.. |actions| image:: https://github.com/clinicedc/edc-lab/workflows/build/badge.svg?branch=develop
-  :target: https://github.com/clinicedc/edc-lab/actions?query=workflow:build
+.. |actions| image:: https://github.com/clinicedc/edc-lab/actions/workflows/build.yml/badge.svg
+  :target: https://github.com/clinicedc/edc-lab/actions/workflows/build.yml
 
 .. |codecov| image:: https://codecov.io/gh/clinicedc/edc-lab/branch/develop/graph/badge.svg
   :target: https://codecov.io/gh/clinicedc/edc-lab
