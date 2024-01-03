@@ -29,6 +29,7 @@ project_settings = DefaultTestSettings(
         "django_crypto_fields.apps.AppConfig",
         "django_revision.apps.AppConfig",
         "multisite",
+        "edc_auth.apps.AppConfig",
         "edc_action_item.apps.AppConfig",
         "edc_appointment.apps.AppConfig",
         "edc_consent.apps.AppConfig",
