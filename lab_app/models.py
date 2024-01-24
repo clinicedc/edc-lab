@@ -17,6 +17,7 @@ from edc_visit_tracking.models import SubjectVisit
 
 from edc_lab.model_mixins import RequisitionModelMixin
 from edc_lab.models import Panel
+from lab_app.consents import consent_v1
 
 
 #
@@ -54,6 +55,7 @@ class SubjectConsent(
 
 
 class SubjectScreening(ScreeningModelMixin, BaseUuidModel):
+    consent_definition = consent_v1
     objects = SubjectIdentifierManager()
 
 
