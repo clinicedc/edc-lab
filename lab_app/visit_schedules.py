@@ -2,9 +2,11 @@ from dateutil.relativedelta import relativedelta
 from edc_visit_schedule.schedule import Schedule
 from edc_visit_schedule.site_visit_schedules import site_visit_schedules
 from edc_visit_schedule.tests.dummy_panel import DummyPanel
-from edc_visit_schedule.visit import Crf, FormsCollection, Visit
+from edc_visit_schedule.visit import Crf, CrfCollection, RequisitionCollection, Visit
 from edc_visit_schedule.visit.requisition import Requisition
 from edc_visit_schedule.visit_schedule import VisitSchedule
+
+from .consents import consent_v1
 
 
 class MockPanel(DummyPanel):
@@ -16,9 +18,9 @@ class MockPanel(DummyPanel):
         super().__init__(requisition_model="lab_app.subjectrequisition", name=name)
 
 
-crfs = FormsCollection(Crf(show_order=1, model="lab_app.crfone", required=True))
+crfs = CrfCollection(Crf(show_order=1, model="lab_app.crfone", required=True))
 
-requisitions = FormsCollection(
+requisitions = RequisitionCollection(
     Requisition(show_order=10, panel=MockPanel("panel"), required=True, additional=False)
 )
 
@@ -43,7 +45,7 @@ schedule = Schedule(
     onschedule_model="lab_app.onschedule",
     offschedule_model="lab_app.offschedule",
     appointment_model="edc_appointment.appointment",
-    consent_model="lab_app.subjectconsent",
+    consent_definitions=[consent_v1],
 )
 
 visit_schedule = VisitSchedule(

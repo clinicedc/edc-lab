@@ -2,9 +2,10 @@ from datetime import date
 
 from django.db import models
 from django.db.models.deletion import PROTECT
+from edc_consent.model_mixins import ConsentVersionModelMixin
 from edc_crf.model_mixins import CrfModelMixin
 from edc_identifier.managers import SubjectIdentifierManager
-from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
+from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_model.models import BaseUuidModel
 from edc_offstudy.model_mixins import OffstudyModelMixin
 from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
@@ -16,6 +17,7 @@ from edc_visit_tracking.models import SubjectVisit
 
 from edc_lab.model_mixins import RequisitionModelMixin
 from edc_lab.models import Panel
+from lab_app.consents import consent_v1
 
 
 #
@@ -34,7 +36,8 @@ class SubjectRequisition(RequisitionModelMixin, BaseUuidModel):
 
 class SubjectConsent(
     SiteModelMixin,
-    NonUniqueSubjectIdentifierFieldMixin,
+    ConsentVersionModelMixin,
+    NonUniqueSubjectIdentifierModelMixin,
     UpdatesOrCreatesRegistrationModelMixin,
     BaseUuidModel,
 ):
@@ -42,7 +45,7 @@ class SubjectConsent(
 
     consent_datetime = models.DateTimeField(default=get_utcnow)
 
-    version = models.CharField(max_length=25, default="1")
+    version = models.CharField(max_length=25)
 
     identity = models.CharField(max_length=25)
 
@@ -52,6 +55,7 @@ class SubjectConsent(
 
 
 class SubjectScreening(ScreeningModelMixin, BaseUuidModel):
+    consent_definition = consent_v1
     objects = SubjectIdentifierManager()
 
 
